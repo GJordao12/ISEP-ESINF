@@ -1,15 +1,11 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        String s1 = sameString("123");
-        String s2 = reverseString("123");
-        int p = productAlgorithm(8, 3);
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println(p);
+        System.out.println(sameString("123"));
+        System.out.println(reverseString("123"));
+        System.out.println(productAlgorithm(8, 3));
         ArrayList<Integer> l = new ArrayList<>();
         l.add(1);
         l.add(5);
@@ -18,10 +14,8 @@ public class Main {
         l.add(3);
         l.add(7);
         l.add(10);
-        int m = maximumElement(l);
-        System.out.println(m);
-        int mdc = mdc(48, 30);
-        System.out.println(mdc);
+        System.out.println(maximumElement(l));
+        System.out.println(mdc(48, 30));
         System.out.println(convertString("12345"));
     }
 
@@ -66,6 +60,6 @@ public class Main {
     //2d)
     public static int convertString(String s) {
         if (s.length() == 0) return 0;
-        return Integer.parseInt("" + s.charAt(0)) + convertString(s.substring(1));
+        return (int) (Integer.parseInt("" + s.charAt(0)) * Math.pow(10, s.length() - 1)) + convertString(s.substring(1));
     }
 }

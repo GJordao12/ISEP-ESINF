@@ -1,11 +1,15 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println(sameString("123"));
+
         System.out.println(reverseString("123"));
+
         System.out.println(productAlgorithm(8, 3));
+
         ArrayList<Integer> l = new ArrayList<>();
         l.add(1);
         l.add(5);
@@ -15,8 +19,35 @@ public class Main {
         l.add(7);
         l.add(10);
         System.out.println(maximumElement(l));
+
         System.out.println(mdc(48, 30));
+
         System.out.println(convertString("12345"));
+
+        System.out.println(isPalindrome(1235321));
+
+        int[][] a = {{1, 2}, {3, 4}};
+        int x = 0;
+        int y = 0;
+        int z = 0;
+        System.out.println(sumAllElements(a, x, y, z));
+
+        int[][] abc = {
+                {1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+                {1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1},
+                {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+                {1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1},
+                {1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        };
+        int[][] solved = labyrinth(abc, 0, 0);
+        for (int[] ints : solved) {
+            for (int anInt : ints) {
+                System.out.print(" " + anInt + " ");
+            }
+            System.out.println();
+        }
     }
 
     //1a)
@@ -61,5 +92,66 @@ public class Main {
     public static int convertString(String s) {
         if (s.length() == 0) return 0;
         return (int) (Integer.parseInt("" + s.charAt(0)) * Math.pow(10, s.length() - 1)) + convertString(s.substring(1));
+    }
+
+    //2e)
+    public static boolean isPalindrome(int i) {
+        if (i < 10) return true;
+        String aux = String.valueOf(i);
+        int last = (Integer.parseInt(aux.charAt(aux.length() - 1) + ""));
+        if (((int) (i / (Math.pow(10, (aux.length() - 1))))) != last) {
+            return false;
+        }
+        return isPalindrome(i - ((int) (Math.pow(10, (aux.length()))) * (Integer.parseInt(aux.charAt(0) + ""))) - last);
+    }
+
+    //2f)
+    public static int sumAllElements(int[][] a, int x, int y, int z) {
+        if (x == a.length || y == a.length || z == a.length) return 0;
+        int soma = a[x][z] + a[y][z];
+        x++;
+        y++;
+        z++;
+        return soma + sumAllElements(a, x, y, z);
+    }
+
+    //3)
+    public static int[][] labyrinth(int[][] a, int x, int y) {
+        if (x == 6 && y == 12) {
+            a[x][y] = 9;
+            return a;
+        }
+        if (y < 12) {
+            y++;
+            if (a[x][y] == 1) {
+                a[x][y] = 9;
+                return labyrinth(a, x, y);
+            }
+            y--;
+        }
+        if (y > 0) {
+            y--;
+            if (a[x][y] == 1) {
+                a[x][y] = 9;
+                return labyrinth(a, x, y);
+            }
+            y++;
+        }
+        if (x > 0) {
+            x--;
+            if (a[x][y] == 1) {
+                a[x][y] = 9;
+                return labyrinth(a, x, y);
+            }
+            x++;
+        }
+        if (x < 6) {
+            x++;
+            if (a[x][y] == 1) {
+                a[x][y] = 9;
+                return labyrinth(a, x, y);
+            }
+        }
+        return labyrinth(a, 0, 0);
     }
 }

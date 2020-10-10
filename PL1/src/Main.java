@@ -1,9 +1,9 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
+
         System.out.println(sameString("123"));
 
         System.out.println(reverseString("123"));
@@ -42,6 +42,7 @@ public class Main {
                 {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1}
         };
         int[][] solved = labyrinth(abc, 0, 0);
+        assert solved != null;
         for (int[] ints : solved) {
             for (int anInt : ints) {
                 System.out.print(" " + anInt + " ");
@@ -117,41 +118,32 @@ public class Main {
 
     //3)
     public static int[][] labyrinth(int[][] a, int x, int y) {
-        if (x == 6 && y == 12) {
-            a[x][y] = 9;
+
+        a[x][y] = 9;
+
+        if ((x == a.length - 1) && (y == a[0].length - 1)) {
             return a;
         }
-        if (y < 12) {
-            y++;
-            if (a[x][y] == 1) {
-                a[x][y] = 9;
-                return labyrinth(a, x, y);
-            }
-            y--;
+
+        int[][] result;
+
+        if ((x > 0) && (a[x - 1][y] == 1)) {
+            result = labyrinth(a, x - 1, y);
+            if (result != null) return result;
         }
-        if (y > 0) {
-            y--;
-            if (a[x][y] == 1) {
-                a[x][y] = 9;
-                return labyrinth(a, x, y);
-            }
-            y++;
+        if ((x < a.length - 1) && (a[x + 1][y] == 1)) {
+            result = labyrinth(a, x + 1, y);
+            if (result != null) return result;
         }
-        if (x > 0) {
-            x--;
-            if (a[x][y] == 1) {
-                a[x][y] = 9;
-                return labyrinth(a, x, y);
-            }
-            x++;
+        if ((y < a[0].length - 1) && (a[x][y + 1] == 1)) {
+            result = labyrinth(a, x, y + 1);
+            if (result != null) return result;
         }
-        if (x < 6) {
-            x++;
-            if (a[x][y] == 1) {
-                a[x][y] = 9;
-                return labyrinth(a, x, y);
-            }
+        if ((y > 0) && (a[x][y - 1] == 1)) {
+            result = labyrinth(a, x, y - 1);
+            if (result != null) return result;
         }
-        return labyrinth(a, 0, 0);
+        a[x][y] = 2;
+        return null;
     }
 }

@@ -143,6 +143,7 @@ public class Main {
             result = labyrinth(a, x, y - 1);
             if (result != null) return result;
         }
+
         a[x][y] = 2;
         return null;
     }

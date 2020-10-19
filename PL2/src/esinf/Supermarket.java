@@ -84,9 +84,9 @@ public class Supermarket {
 
     }
 
-    // converts a map of invoices and troducts to a map which key is a product 
+    // converts a map of invoices and products to a map which key is a product
     // identification and the values are a set of the invoice references 
-    // in which it appearss
+    // in which it appears
     Map<String, Set<Invoice>> convertInvoices() {
 
         Map<String, Set<Invoice>> map = new HashMap<>();

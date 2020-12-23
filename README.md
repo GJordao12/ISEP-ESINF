@@ -1,3 +1,4 @@
-# ISEP-ESINF (2º Ano 1º Semestre)
-
->Projetos e Trabalhos de ESINF da Faculdade em Java
+# ISEP - ESINF (2º ANO - 1º SEMESTRE)
+* Linguagem: Java
+* Projetos e Trabalhos de ESINF da Universidade
+* Ano: 2020
